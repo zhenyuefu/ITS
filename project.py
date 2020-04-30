@@ -28,12 +28,10 @@ def gen_mean():
 
 
 mean = gen_mean()
-print(mean)
 cov = np.eye(2) * sigma
 Gaussian = multivariate_normal(mean=mean, cov=cov)
 X, Y = np.meshgrid(np.linspace(XMIN, XMAX, M), np.linspace(YMIN, YMAX, M))
 pos = np.dstack([X, Y])
-print(pos.shape)
 temperature_fictive = Gaussian.pdf(pos)*1000000
 
 # define function
@@ -55,7 +53,6 @@ x_best_history = np.array([x_best])
 y_best_history = np.array([y_best])
 
 while (T > T_min):
-    counter = 0
     for i in range(L):
         p = 0
         while (p == 0):
