@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.stats import multivariate_normal
 import matplotlib.pyplot as plt
 # from mpl_toolkits.mplot3d import Axes3D
 import math
@@ -16,16 +17,30 @@ T_min = 1e-7
 S = 0.05
 
 # genere des donnes
-temperature_fictive = np.random.normal(100, 10, (200, 200))
-X = np.arange(0, 20, 0.1)
-Y = np.arange(0, 20, 0.1)
-X, Y = np.meshgrid(X, Y)
+sigma = 500
+M = 200  # nombre de donnees
+
+
+def gen_mean():
+    x = np.random.randint(XMIN, XMAX)
+    y = np.random.randint(YMIN, YMAX)
+    return (x, y)
+
+
+mean = gen_mean()
+print(mean)
+cov = np.eye(2) * sigma
+Gaussian = multivariate_normal(mean=mean, cov=cov)
+X, Y = np.meshgrid(np.linspace(XMIN, XMAX, M), np.linspace(YMIN, YMAX, M))
+pos = np.dstack([X, Y])
+print(pos.shape)
+temperature_fictive = Gaussian.pdf(pos)*1000000
 
 # define function
 
 
-def f(X, Y):
-    return -1*temperature_fictive[X, Y]
+def f(x, y):
+    return -1*temperature_fictive[y, x]
 
 
 # init
@@ -69,7 +84,7 @@ z = np.array([temperature_fictive[x_best, y_best]])
 x_best = np.array([x_best])
 y_best = np.array([y_best])
 print(x_best, y_best, z)
-print(temperature_fictive.min())
+# print(temperature_fictive.min())
 print(temperature_fictive.max())
 fig = plt.figure()
 plt.imshow(temperature_fictive)
