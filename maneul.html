@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>maneul d'utilisation</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="maneul-dutilisation">maneul d'utilisation</h1>
+<h2 id="genere-des-donnees">genere des donnees</h2>
+<p>Le programme a généré au hasard une grille de 200 * 200 (sous forme de gaussiennes)
+Ici je utilise <code>scipy.stats.multivariate_normal</code></p>
+<h2 id="boucle-de-rs">boucle de RS</h2>
+<p>Ensuite c'est la boucle de RS
+On répète <code>L=200</code> fois pour chaque température:
+1.Générez de nouvelles coordonnées au hasard
+2.Calculer la valeur <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">\Delta f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> après la perturbation, accepter la perturbation si elle est supérieure à 0 et l'accepter avec une probabilité de <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><msup><mi>e</mi><mrow><mtext>−</mtext><mi mathvariant="normal">Δ</mi><mi>f</mi><mi mathvariant="normal">/</mi><mi>T</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p=e^{−\Delta f/T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">Δ</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mtight">/</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></span> si elle est inférieure à 0.
+3.Meilleure mise à jour <code>(x_best, y_best)</code>
+Ensuite on refroid par le facteur <code>K</code> jusqu'à la température la plus basse <code>T_min</code></p>
+<p>Le boucle trouve le minimum de founction.
+Je fois le founction par -1 pour trouver le maximum.</p>
+<h2 id="display">display</h2>
+<p>On utilise <code>matplotlib.pyplot</code> pour afficher les résultats graphiques.
+Et on <code>print</code> les values <code>x_best</code> et <code>y_best</code> et le maximun de founction.</p>
+
+    </body>
+    </html>
